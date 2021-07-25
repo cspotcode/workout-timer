@@ -99,9 +99,19 @@ $(() => {
         return `${Math.abs(v) < 10 ? '0' : ''}${v}`;
     }
     const timerTemplate = $('#timerTemplate');
-    const timerSelectors = ['#timerA', '#timerB', '#timerC'];
-    const timers = window.timers = timerSelectors.map(selector => {
+    const timerTemplates = [{
+            selector: '#timerA', min: 1, sec: 0
+        }, {
+            selector: '#timerB', min: 0, sec: 45
+        }, {
+            selector: '#timerC', min: 0, sec: 30
+        }, {
+            selector: '#timerD', min: 0, sec: 15
+        }];
+    const timers = window.timers = timerTemplates.map(({ selector, min, sec }) => {
         $(selector).html(timerTemplate.html());
-        return new Timer(selector);
+        const timer = new Timer(selector);
+        timer.minInput = min;
+        timer.secInput = sec;
     });
 });

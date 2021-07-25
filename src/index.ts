@@ -52,19 +52,19 @@ $(() => {
         set finished(v: boolean) {
             this._finished = v;
             const className = 'finished';
-            if(v) this.$root.addClass(className);
+            if (v) this.$root.addClass(className);
             else this.$root.removeClass(className);
         }
         tick() {
-            if(this.running) {
+            if (this.running) {
                 this.secRemaining--;
-                if(this.secRemaining <= 0) this.finished = true;
+                if (this.secRemaining <= 0) this.finished = true;
                 this.renderReadout();
             }
         }
         onStartPause() {
             this.running = !this.running;
-            if(this.running) {
+            if (this.running) {
                 this.setTimeFromInputs();
                 this.renderReadout();
                 this.startTicker();
@@ -80,10 +80,10 @@ $(() => {
             this.$startPauseButton.text(this.running ? 'Pause' : 'Play');
         }
         startTicker() {
-            if(this.tickerInterval == null) this.tickerInterval = setInterval(this.tick.bind(this), 1e3);
+            if (this.tickerInterval == null) this.tickerInterval = setInterval(this.tick.bind(this), 1e3);
         }
         stopTicker() {
-            if(this.tickerInterval != null) {
+            if (this.tickerInterval != null) {
                 clearInterval(this.tickerInterval);
                 this.tickerInterval = null;
             }
@@ -101,13 +101,23 @@ $(() => {
         }
     }
     function pad(v: number) {
-        return `${ Math.abs(v) < 10 ? '0' : '' }${ v }`;
+        return `${Math.abs(v) < 10 ? '0' : ''}${v}`;
     }
 
     const timerTemplate = $('#timerTemplate');
-    const timerSelectors = ['#timerA', '#timerB', '#timerC'];
-    const timers = (window as any).timers = timerSelectors.map(selector => {
+    const timerTemplates = [{
+        selector: '#timerA', min: 1, sec: 0
+    }, {
+        selector: '#timerB', min: 0, sec: 45
+    }, {
+        selector: '#timerC', min: 0, sec: 30
+    }, {
+        selector: '#timerD', min: 0, sec: 15
+    }];
+    const timers = (window as any).timers = timerTemplates.map(({ selector, min, sec }) => {
         $(selector).html(timerTemplate.html());
-        return new Timer(selector);
+        const timer = new Timer(selector);
+        timer.minInput = min;
+        timer.secInput = sec;
     });
 });
