@@ -15,9 +15,15 @@ $(() => {
             this.$secInput = this.$wrap.find('.secInput');
             this.$timeReadout = this.$wrap.find('.timeReadout');
             this.$startPauseButton = this.$wrap.find('.startPauseButton');
-            this.$startPauseButton.on('click', this.onStartPause.bind(this));
+            this.$startPauseButton.on('click', (ev) => {
+                ev.preventDefault();
+                this.onStartPause();
+            });
             this.$resetButton = this.$wrap.find('.resetButton');
-            this.$resetButton.on('click', this.onReset.bind(this));
+            this.$resetButton.on('click', (ev) => {
+                ev.preventDefault();
+                this.onReset();
+            });
             this.renderReadout();
         }
 
