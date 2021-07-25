@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <style>
+            html, input, button {
+                font-size: 24px;
+                font-family: Consolas;
+            }
+            .timerRoot {
+                margin: 20px;
+                padding: 20px;
+                border: 2px black;
+            }
+            .timerRoot.finished {
+                background-color: red;
+            }
+            .minInput,.secInput {
+                width: 50px;
+            }
+            .timeReadout {
+                font-size: 32px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div style="display: none" id="timerTemplate">
+            <div class="timerRoot">
+                <div>
+                    <input class="minInput" value=1><input class="secInput" value=0>
+                </div>
+                <div>
+                    <span class="timeReadout">---</span>
+                </div>
+                <div>
+                    <button class="startPauseButton">Start</button>
+                    <button class="resetButton">Reset</button>
+                </div>
+            </div>
+        </div>
+        <div id="timerA">
+        </div>
+        <div id="timerB">
+        </div>
+        <div id="timerC">
+        </div>
+        <script
+  src="https://code.jquery.com/jquery-3.6.0.slim.js"
+  integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+  crossorigin="anonymous"></script>
+        <script type="text/javascript" src="dist/index.js"></script>
+    </body>
+</html>
