@@ -24,6 +24,7 @@ $(() => {
                 ev.preventDefault();
                 this.onReset();
             });
+            this.setTimeFromInputs();
             this.renderReadout();
         }
 

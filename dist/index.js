@@ -19,6 +19,7 @@ $(() => {
                 ev.preventDefault();
                 this.onReset();
             });
+            this.setTimeFromInputs();
             this.renderReadout();
         }
         get minInput() {
